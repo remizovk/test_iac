@@ -26,4 +26,4 @@
 8. После чего мы провалимся в контейнер, где можно будет проверить дату и установку git.  
 `date`  
 `git --version`  
-<img https://github.com/remizovk/test_iac/blob/2b30c517846514ff3bf6f098c4747b748f0a4eff/Screenshot%20from%202022-09-05%2015-38-33.png>
+![](https://github.com/remizovk/test_iac/blob/2b30c517846514ff3bf6f098c4747b748f0a4eff/Screenshot%20from%202022-09-05%2015-38-33.png)
