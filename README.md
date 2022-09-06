@@ -25,10 +25,10 @@
 `docker run -ti <name_image>`  
 В ответ выйдет текст: *Hello, IAC*  
 8. Теперь проверим установку часового пояса и времени:    
-``docker run -ti <name_image> date`  
+`docker run -ti <name_image> date`  
 В ответ получим московское время.  
 9. Проверим установку git:  
-``docker run -ti <name_image> git --version`  
+`docker run -ti <name_image> git --version`  
 В ответ увидим версию Git.  
 .  
 ![](https://github.com/remizovk/test_iac/blob/5e74ced9e3b61be47ce493699fbddb797c99641a/Screenshot%20from%202022-09-06%2012-11-45.png)
