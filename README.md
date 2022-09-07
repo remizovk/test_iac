@@ -32,17 +32,17 @@
 `docker run -it --name hello demo`    
 В ответ выйдет текст: *Hello, IAC*  
 9. Для проверки часового пояса и git создадим еще один контейнер из образа, но с запущенным bash:    
-`docker run -it --name example demo bash` 
+`docker run -it --name example demo bash`  
 После чего провалимся в контейнер:  
-> root@ef34286ad044:/# 
+`root@ef34286ad044:/# ` 
 10. Теперь проверим установленное время:  
-> root@ef34286ad044:/# date  
+`root@ef34286ad044:/# date`  
 В ответ получим московское время.  
 11. Далее проверим, что символическая ссылка /etc/localtime указывает на нужный каталог:  
-> root@ef34286ad044:/# readlink /etc/localtime  
+`root@ef34286ad044:/# readlink /etc/localtime`  
 Должен появиться каталог с нашим часовым поясом: */usr/share/zoneinfo/Europe/Moscow*  
 12. Ну и наконец проверим установку git:  
-> root@ef34286ad044:/# git --version  
+`root@ef34286ad044:/# git --version`  
 В ответ увидим версию Git.  
 
 
