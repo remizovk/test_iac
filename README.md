@@ -31,5 +31,6 @@
 9. Проверим установку git:  
 `docker run -ti <name_image> git --version`  
 В ответ увидим версию Git.  
-.  
+
+
 ![](https://github.com/remizovk/test_iac/blob/ee2b3e63874bb27f0654bf8e10528351a7294337/Screenshot%20from%202022-09-07%2013-08-19.png)
