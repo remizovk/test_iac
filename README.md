@@ -32,4 +32,4 @@
 `docker run -ti <name_image> git --version`  
 В ответ увидим версию Git.  
 .  
-![](https://github.com/remizovk/test_iac/blob/5e74ced9e3b61be47ce493699fbddb797c99641a/Screenshot%20from%202022-09-06%2012-11-45.png)
+![](https://github.com/remizovk/test_iac/blob/ee2b3e63874bb27f0654bf8e10528351a7294337/Screenshot%20from%202022-09-07%2013-08-19.png)
