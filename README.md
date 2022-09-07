@@ -15,21 +15,31 @@
 2. Следующей строкой зададим переменную 'TZ', где в качестве значения укажем часовой пояс:  
 > ENV TZ=Europe/Moscow  
 3. **update** для обновления базы данных, а также пакеты **tzdata** и **git** установим одной строкой, чтобы не плодить слои в создаваемом образе.  
-`RUN apt-get update && apt-get install -y tzdata && apt-get install -y git` 
-4. Пакет **tzdata** выполнит синхронизацию с мировым временем. Осталось скопировать значение нашей переменной (т.е. часовой пояс) из каталога /usr/share/zoneinfo/ в символическую ссылку /etc/localtime, и с помощью стандартного потока ввода/вывода добавим это же значение в /etc/timezone.  
-`RUN cp /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone`   
-5. Текст "Hello, IAC" на стандартное устройство вывода напечатем с помощью команды 'echo'.  
-`CMD echo "Hello, IAC"`  
-6. Dockerfile готов. Соберем образ командой:  
-`docker build .`  
-7. Когда образ будет готов, проверим результаты:  
-`docker run -ti <name_image>`  
+> RUN apt-get update && apt-get install -y tzdata && apt-get install -y git 
+4. Для систем Linux обычно имеется два файла, связанных с конфигурацией информации о часовом поясе.  
+- */etc/localtime (это символическая ссылка на каталог /usr/share/zoneinfo)*  
+- */etc/timezone*  
+
+5. Пакет **tzdata**, из предыдущей команды, выполнит синхронизацию с мировым временем. А нам нужно внести правки в файлы /etc/localtime и /etc/timezone.  
+Сначала удалим символическую ссылку /etc/localtime, чтобы потом ее пересоздать на обновленный каталог /usr/share/zoneinfo:  
+> RUN rm -rf /etc/localtime  
+6. Теперь, используя переменную 'TZ', пропишем часовой пояс в каталоге /usr/share/zoneinfo и создадим символическую ссылку на него по адресу /etc/localtime. Также, с помощью переменной 'TZ' и команды echo, добавим часовой пояс в каталог /etc/timezone.  
+> RUN ln -s /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone  
+7. Текст "Hello, IAC" на стандартное устройство вывода напечатем с помощью команды 'echo'.  
+> CMD echo "Hello, IAC"  
+8. Dockerfile готов. Соберем образ командой:  
+> docker build .    
+9. Когда образ будет готов, проверим результаты:  
+> docker run <name_image>    
 В ответ выйдет текст: *Hello, IAC*  
-8. Теперь проверим установку часового пояса и времени:    
-`docker run -ti <name_image> date`  
+10. Теперь проверим установку местного времени:    
+> docker run <name_image> date  
 В ответ получим московское время.  
-9. Проверим установку git:  
-`docker run -ti <name_image> git --version`  
+11. Далее проверим, что символическая ссылка /etc/timezone указывает на нужный каталог:  
+> docker run <name_image> readlink /etc/localtime  
+Должен появиться каталог с нашим часовым поясом: */usr/share/zoneinfo/Europe/Moscow*  
+12. Ну и наконец проверим установку git:  
+> docker run <name_image> git --version  
 В ответ увидим версию Git.  
 
 
