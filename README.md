@@ -26,6 +26,7 @@
 `RUN ln -s /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone`  
 6. Текст "Hello, IAC" на стандартное устройство вывода напечатем с помощью команды 'echo'.  
 `CMD echo "Hello, IAC"`  
+
 7. Dockerfile готов. Соберем образ и сразу дадим ему название 'demo':  
 `docker build -t demo .`    
 8. Когда образ будет готов, создадим из него контейнер и тоже сразу дадим ему название:  
